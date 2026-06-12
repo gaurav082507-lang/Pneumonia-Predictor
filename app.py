@@ -22,8 +22,8 @@ def load_cloud_model():
         with st.spinner("Downloading heavy AI model weights from secure cloud storage... Please wait."):
             # ✅ The corrected, clean Google Drive File ID is now in place! ✅
             file_id = "15uBH_UCkPXsYThGxphvoQ4NmYrhu8xNx"
-        url = f"https://drive.google.com/uc?export=download&id={file_id}"
-        gdown.download(url, model_path, quiet=False)
+            url = f"https://drive.google.com/uc?export=download&id={file_id}"
+            gdown.download(url, model_path, quiet=False)
             
     return tf.keras.models.load_model(model_path)
 
