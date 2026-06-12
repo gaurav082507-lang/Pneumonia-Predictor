@@ -22,7 +22,7 @@ def load_cloud_model():
             # ⚠️ REPLACE 'your-username' WITH YOUR ACTUAL HUGGING FACE USERNAME ⚠️
             # ⚠️ REPLACE 'pneumonia-model' WITH YOUR ACTUAL HF REPOSITORY NAME ⚠️
             model_path = hf_hub_download(
-                repo_id="your-username/pneumonia-model", 
+                repo_id="MLCoder90/Pneumonia_Model", 
                 filename="pneumonia_model.h5"
             )
             
