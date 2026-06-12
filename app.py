@@ -20,7 +20,7 @@ def load_cloud_model():
     # Only download it if it doesn't exist on the server yet
     if not os.path.exists(model_path):
         with st.spinner("Downloading heavy AI model weights from secure cloud storage... Please wait."):
-            # 🚨 REPLACE THE STRING BELOW WITH YOUR ACTUAL GOOGLE DRIVE FILE ID 🚨
+            # ✅ The corrected, clean Google Drive File ID is now in place! ✅
             file_id = "15uBH_UCkPXsYThGxphvoQ4NmYrhu8xNx"
             url = f"https://drive.google.com/uc?id={file_id}"
             gdown.download(url, model_path, quiet=False)
@@ -73,5 +73,7 @@ if uploaded_file is not None:
             st.metric(label="Model Confidence Score", value=f"{confidence:.2f}%")
             st.markdown("> **Clinical Note:** Clear lung fields without distinct signatures of bacterial or viral fluid infiltration.")
 
+# 8. Clean Branded Footer with Dynamic Disclaimer
 st.markdown("---")
+st.caption("🚀 **Built by Gaurav Gupta (BIT Mesra AIML)**")
 st.caption("Disclaimer: This deep learning model is an educational tool built for research verification. It is not an FDA-approved diagnostic instrument.")
