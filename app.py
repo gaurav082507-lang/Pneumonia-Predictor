@@ -2,7 +2,7 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
-import gdown
+from huggingface_hub import hf_hub_download
 import os
 
 # 1. Page Layout Configuration
@@ -12,25 +12,26 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. Smart Google Drive Cloud Downloader
+# 2. Native Hugging Face Cloud Downloader
 @st.cache_resource
 def load_cloud_model():
     model_path = "pneumonia_model.h5"
     
-    # Only download it if it doesn't exist on the server yet
     if not os.path.exists(model_path):
-        with st.spinner("Downloading heavy AI model weights from secure cloud storage... Please wait."):
-            # ✅ The corrected, clean Google Drive File ID is now in place! ✅
-            file_id = "15uBH_UCkPXsYThGxphvoQ4NmYrhu8xNx"
-            url = f"https://drive.google.com/uc?export=download&id={file_id}"
-            gdown.download(url, model_path, quiet=False)
+        with st.spinner("Downloading heavy AI model weights from Hugging Face Hub... Please wait."):
+            # ⚠️ REPLACE 'your-username' WITH YOUR ACTUAL HUGGING FACE USERNAME ⚠️
+            # ⚠️ REPLACE 'pneumonia-model' WITH YOUR ACTUAL HF REPOSITORY NAME ⚠️
+            model_path = hf_hub_download(
+                repo_id="your-username/pneumonia-model", 
+                filename="pneumonia_model.h5"
+            )
             
     return tf.keras.models.load_model(model_path)
 
 try:
     model = load_cloud_model()
 except Exception as e:
-    st.error("Failed to load model layers. Please check your Google Drive File ID and permissions.")
+    st.error(f"Failed to load model from Hugging Face. Error details: {e}")
     st.stop()
 
 # 3. Clean Dashboard UI Header
